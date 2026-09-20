@@ -9,48 +9,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
+  <link rel="stylesheet" href="assets/css/theme.css" />
+
   <style>
     /* ─── CSS Custom Properties ─────────────────────────────────── */
     :root {
-      --bg-base:       #0b0f1a;
-      --bg-surface:    #111827;
-      --bg-elevated:   #141c2e;
-      --bg-card:       #131929;
-      --bg-card-hover: #182035;
+      --bg-base:       var(--bg-primary);
+      --bg-surface:    var(--bg-surface);
+      --bg-elevated:   var(--bg-surface-muted);
+      --bg-card:       var(--bg-surface);
+      --bg-card-hover: var(--bg-surface-hover);
 
-      --border:        rgba(255,255,255,0.07);
-      --border-subtle: rgba(255,255,255,0.04);
-      --border-glow:   rgba(99,102,241,0.35);
+      --border:        var(--border-default);
+      --border-subtle: var(--border-subtle);
+      --border-glow:   rgba(90,31,43,0.15);
 
-      --accent-blue:   #4f8ef7;
-      --accent-purple: #7c6df6;
-      --accent-coral:  #f4714a;
-      --accent-green:  #34d399;
-      --accent-amber:  #f59e0b;
-      --accent-cyan:   #22d3ee;
+      --accent-blue:   var(--accent-burgundy);
+      --accent-purple: var(--accent-rose);
+      --accent-coral:  var(--status-danger);
+      --accent-green:  var(--status-success);
+      --accent-amber:  var(--status-warning);
+      --accent-cyan:   var(--accent-olive);
 
-      --grad-primary:  linear-gradient(135deg, #4f8ef7 0%, #7c6df6 100%);
-      --grad-glow:     radial-gradient(ellipse 60% 40% at 50% 0%, rgba(99,102,241,0.18) 0%, transparent 70%);
-      --grad-card:     linear-gradient(145deg, rgba(79,142,247,0.06) 0%, rgba(124,109,246,0.04) 100%);
+      --grad-primary:  var(--button-primary-bg);
+      --grad-glow:     none;
+      --grad-card:     none;
 
-      --text-primary:  #f0f4ff;
-      --text-secondary:#8b9cc8;
-      --text-muted:    #4a5578;
-      --text-code:     #a5b4fc;
+      --text-primary:  #242321;
+      --text-secondary:#5F635D;
+      --text-muted:    #8C9088;
+      --text-code:     var(--accent-burgundy);
 
       --radius-sm:  6px;
       --radius-md:  10px;
       --radius-lg:  14px;
-      --radius-xl:  20px;
+      --radius-xl:  18px;
 
-      --font-display: 'Bricolage Grotesque', sans-serif;
+      --font-display: 'DM Sans', sans-serif;
       --font-body:    'DM Sans', sans-serif;
-      --font-mono:    'JetBrains Mono', 'IBM Plex Mono', monospace;
-      --font-ui:      'IBM Plex Sans', 'DM Sans', sans-serif;
+      --font-mono:    'IBM Plex Mono', monospace;
+      --font-ui:      'DM Sans', sans-serif;
 
-      --shadow-card:  0 1px 3px rgba(0,0,0,0.4), 0 4px 20px rgba(0,0,0,0.3);
-      --shadow-glow:  0 0 30px rgba(99,102,241,0.15);
-      --shadow-hover: 0 8px 40px rgba(79,142,247,0.12), 0 2px 8px rgba(0,0,0,0.5);
+      --shadow-card:  var(--shadow-sm);
+      --shadow-glow:  none;
+      --shadow-hover: var(--shadow-md);
 
       --nav-height: 64px;
     }
@@ -90,9 +92,9 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       height: var(--nav-height);
-      background: rgba(11,15,26,0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(244, 240, 230, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       z-index: 100;
       display: flex;

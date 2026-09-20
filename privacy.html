@@ -12,42 +12,44 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/theme.css" />
   <style>
     /* ======================================
        CSS VARIABLES — BOL DESIGN TOKENS
     ====================================== */
     :root {
-      --bg-base:        #080c18;
-      --bg-layer1:      #0d1424;
-      --bg-layer2:      #111b30;
-      --bg-layer3:      #162038;
-      --bg-card:        #0f1829;
-      --bg-card-hover:  #131e35;
+      --bg-base:        var(--bg-primary);
+      --bg-layer1:      var(--bg-surface);
+      --bg-layer2:      var(--bg-surface-muted);
+      --bg-layer3:      var(--bg-surface-hover);
+      --bg-card:        var(--bg-surface);
+      --bg-card-hover:  var(--bg-surface-hover);
 
-      --blue-core:      #4361ee;
-      --blue-light:     #738eff;
-      --blue-dim:       #2d4acc;
-      --purple-core:    #7c3aed;
-      --purple-light:   #a78bfa;
-      --orange-accent:  #f97316;
-      --teal-accent:    #0dce8f;
+      --blue-core:      var(--accent-burgundy);
+      --blue-light:     var(--accent-rose);
+      --blue-dim:       #4A1823;
+      --purple-core:    var(--accent-burgundy);
+      --purple-light:   var(--accent-rose);
+      --orange-accent:  var(--status-warning);
+      --teal-accent:    var(--status-success);
 
-      --text-primary:   #f0f4ff;
-      --text-secondary: #8b9dc3;
-      --text-muted:     #4a5d85;
-      --text-label:     #5a7aab;
+      --text-primary:   #242321;
+      --text-secondary: #5F635D;
+      --text-muted:     #8C9088;
+      --text-label:     #70756E;
 
-      --border-subtle:  rgba(67,97,238,0.12);
-      --border-dim:     rgba(67,97,238,0.2);
-      --border-bright:  rgba(67,97,238,0.45);
+      --border-subtle:  var(--border-subtle);
+      --border-dim:     var(--border-default);
+      --border-bright:  var(--border-focus);
 
-      --glow-blue:      0 0 40px rgba(67,97,238,0.18);
-      --glow-blue-md:   0 0 60px rgba(67,97,238,0.22);
-      --glow-purple:    0 0 40px rgba(124,58,237,0.15);
+      --glow-blue:      none;
+      --glow-blue-md:   none;
+      --glow-purple:    none;
 
-      --radius-sm:  8px;
-      --radius-md:  12px;
-      --radius-lg:  16px;
+      --radius-sm:  6px;
+      --radius-md:  10px;
+      --radius-lg:  14px;
+      --radius-xl:  18px;
       --radius-xl:  22px;
       --radius-2xl: 28px;
 

@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
+  <link rel="stylesheet" href="assets/css/theme.css" />
+
   <style>
     /* ─────────────────────────────────────────
        RESET & BASE
@@ -18,34 +20,34 @@
 
     :root {
       /* Backgrounds */
-      --bg-root:       #070b12;
-      --bg-deep:       #050810;
-      --bg-card:       #0c1221;
-      --bg-card-hover: #0f1629;
-      --bg-card-alt:   #0a1019;
+      --bg-root:       var(--bg-primary);
+      --bg-deep:       var(--bg-primary);
+      --bg-card:       var(--bg-surface);
+      --bg-card-hover: var(--bg-surface-hover);
+      --bg-card-alt:   var(--bg-surface-muted);
 
       /* Borders */
-      --border-ghost:  rgba(255,255,255,0.055);
-      --border-soft:   rgba(255,255,255,0.09);
-      --border-blue:   rgba(67,97,238,0.3);
+      --border-ghost:  var(--border-subtle);
+      --border-soft:   var(--border-default);
+      --border-blue:   rgba(90,31,43,0.25);
 
       /* Brand */
-      --blue:          #4361ee;
-      --blue-light:    #7a98f8;
-      --purple:        #7048e8;
-      --teal:          #4cc9f0;
-      --orange:        #ff4d1f;
+      --blue:          var(--accent-burgundy);
+      --blue-light:    var(--accent-rose);
+      --purple:        var(--accent-burgundy);
+      --teal:          var(--accent-olive);
+      --orange:        var(--status-danger);
 
       /* Gradients */
-      --grad-brand:    linear-gradient(135deg, #4361ee 0%, #7048e8 100%);
-      --grad-brand-45: linear-gradient(45deg,  #4361ee 0%, #7048e8 100%);
-      --grad-glow-b:   radial-gradient(ellipse at center, rgba(67,97,238,0.14) 0%, transparent 68%);
-      --grad-glow-p:   radial-gradient(ellipse at center, rgba(112,72,232,0.09) 0%, transparent 68%);
+      --grad-brand:    var(--button-primary-bg);
+      --grad-brand-45: var(--button-primary-bg);
+      --grad-glow-b:   none;
+      --grad-glow-p:   none;
 
       /* Text */
-      --text-1: #eef2ff;
-      --text-2: #8a96b0;
-      --text-3: #546078;
+      --text-1: #242321;
+      --text-2: #5F635D;
+      --text-3: #8C9088;
 
       /* Type */
       --f-head: 'Bricolage Grotesque', sans-serif;

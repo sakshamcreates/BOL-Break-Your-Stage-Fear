@@ -9,28 +9,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
+  <link rel="stylesheet" href="assets/css/theme.css" />
+
 <style>
 :root {
-  --bg: #050C18;
-  --s1: #0B1526;
-  --s2: #101D30;
-  --b1: rgba(255,255,255,0.06);
-  --b2: rgba(255,255,255,0.10);
-  --b3: rgba(255,255,255,0.16);
-  --t1: #E8EDF8;
-  --t2: #8A97B5;
-  --t3: #4A5672;
-  --blue: #3B82F6;
-  --blue-l: #60A5FA;
-  --purple: #7C3AED;
-  --purple-l: #A78BFA;
-  --green: #10B981;
-  --green-l: #34D399;
-  --red: #EF4444;
-  --amber: #F59E0B;
-  --fh: 'Bricolage Grotesque', sans-serif;
+  --bg: var(--bg-primary);
+  --s1: var(--bg-surface);
+  --s2: var(--bg-surface-muted);
+  --b1: var(--border-default);
+  --b2: var(--border-subtle);
+  --b3: var(--border-focus);
+  --t1: #242321;
+  --t2: #5F635D;
+  --t3: #8C9088;
+  --blue: var(--accent-burgundy);
+  --blue-l: var(--accent-rose);
+  --purple: var(--accent-burgundy);
+  --purple-l: var(--accent-rose);
+  --green: var(--status-success);
+  --green-l: #3B6E47;
+  --red: var(--status-danger);
+  --amber: var(--status-warning);
+  --fh: 'DM Sans', sans-serif;
   --fb: 'DM Sans', sans-serif;
-  --fm: 'JetBrains Mono', monospace;
+  --fm: 'IBM Plex Mono', monospace;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

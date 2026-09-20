@@ -1,0 +1,59 @@
+/* ===================================================================
+   BOL — Unified Design Token System (Warm Ivory + Burgundy + Charcoal)
+   assets/css/theme.css
+=================================================================== */
+
+:root {
+  /* Core palette */
+  --bg-primary:        #F4F0E6;   /* warm beige */
+  --bg-surface:        #FFFDF8;   /* surface */
+  --bg-surface-muted:  #EDE7DA;
+  --bg-surface-hover:  #F8F4EC;
+
+  --text-primary:      #242321;   /* dark charcoal text */
+  --text-secondary:    #5F635D;
+  --text-muted:        #8C9088;
+
+  --border-default:    #E2DCCE;
+  --border-subtle:     #EDE7DA;
+  --border-focus:      #242321;
+
+  /* Buttons */
+  --button-primary-bg:   #5A1F2B;  /* burgundy */
+  --button-primary-text: #FFFDF8;
+  --button-primary-hover:#4A1823;
+
+  --button-secondary-bg:    #EDE7DA;
+  --button-secondary-text:  #242321;
+  --button-secondary-border:#D8D1C1;
+
+  /* Accents */
+  --accent-burgundy:   #5A1F2B;
+  --accent-rose:       #9B6670;
+  --accent-olive:      #4A5A46;
+  --accent-olive-tint: #EDF2EB;
+
+  /* Status */
+  --status-success:      #3B6E47;
+  --status-success-tint: #EDF5EF;
+  --status-warning:      #B0772A;
+  --status-warning-tint: #FDF7ED;
+  --status-danger:       #B54838;
+  --status-danger-tint:  #FDF1EF;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(36, 35, 33, 0.04);
+  --shadow-md: 0 4px 16px rgba(36, 35, 33, 0.06);
+  --shadow-lg: 0 16px 40px rgba(36, 35, 33, 0.08);
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+
+  /* Fonts */
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', monospace;
+}

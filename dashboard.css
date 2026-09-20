@@ -16,31 +16,33 @@
 
 /* ── Design tokens ── */
 :root {
-  --bg-primary:         #F5F1E8;
+  --bg-primary:         #F4F0E6;
   --bg-surface:         #FFFDF8;
   --bg-surface-muted:   #EDE7DA;
   --bg-surface-hover:   #F8F4EC;
 
-  --text-primary:       #1F211E;
+  --text-primary:       #242321;
   --text-secondary:     #5F635D;
   --text-muted:         #8C9088;
 
   --border-default:     #E2DCCE;
   --border-subtle:      #EDE7DA;
-  --border-focus:       #1F211E;
+  --border-focus:       #242321;
 
-  --button-primary-bg:    #1F211E;
+  --button-primary-bg:    #5A1F2B;
   --button-primary-text:  #FFFDF8;
-  --button-primary-hover: #111310;
+  --button-primary-hover: #4A1823;
 
   --button-secondary-bg:    #EDE7DA;
-  --button-secondary-text:  #1F211E;
+  --button-secondary-text:  #242321;
   --button-secondary-border:#D8D1C1;
 
+  --accent-burgundy:    #5A1F2B;
+  --accent-rose:        #9B6670;
   --accent-olive:       #4A5A46;
   --accent-olive-tint:  #EDF2EB;
 
-  --accent-terracotta:  #B8583D;
+  --accent-terracotta:      #B8583D;
   --accent-terracotta-tint: #FBEFEA;
 
   --status-success:       #3B6E47;
@@ -52,9 +54,9 @@
   --status-danger:        #B54838;
   --status-danger-tint:   #FDF1EF;
 
-  --shadow-sm: 0 1px 3px rgba(31, 33, 30, 0.04);
-  --shadow-md: 0 4px 16px rgba(31, 33, 30, 0.06);
-  --shadow-lg: 0 16px 40px rgba(31, 33, 30, 0.08);
+  --shadow-sm: 0 1px 3px rgba(36, 35, 33, 0.04);
+  --shadow-md: 0 4px 16px rgba(36, 35, 33, 0.06);
+  --shadow-lg: 0 16px 40px rgba(36, 35, 33, 0.08);
 
   /* Legacy mappings for dashboard components */
   --bg:              var(--bg-primary);
@@ -65,13 +67,13 @@
   --text:            var(--text-primary);
   --text-secondary:  #5F635D;
   --text-muted:      #8C9088;
-  --accent:          var(--accent-olive);
-  --accent2:         #384535;
-  --accent3:         var(--accent-olive);
-  --accent4:         #5d6f58;
+  --accent:          var(--accent-burgundy);
+  --accent2:         var(--accent-olive);
+  --accent3:         var(--accent-burgundy);
+  --accent4:         var(--accent-rose);
   --accent-dim:      var(--accent-olive-tint);
-  --accent-glow:     rgba(74, 90, 70, 0.15);
-  --blue:            #3d6380;
+  --accent-glow:     rgba(90, 31, 43, 0.15);
+  --blue:            var(--accent-olive);
   --green:           var(--status-success);
   --amber:           var(--status-warning);
   --red:             var(--status-danger);
@@ -125,13 +127,13 @@ body {
   width: 38px;
   height: 38px;
   border-radius: 999px;
-  background: var(--accent-olive);
+  background: var(--button-primary-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
   font-size: 14px;
-  color: #FFFDF8;
+  color: var(--button-primary-text);
   flex-shrink: 0;
 }
 
@@ -601,7 +603,7 @@ body {
 
 .session-table tbody tr:last-child { border-bottom: none; }
 
-.session-table tbody tr:hover { background: rgba(99,102,241,.04); }
+.session-table tbody tr:hover { background: var(--bg-surface-hover); }
 
 .session-table td {
   padding: 13px 22px;
@@ -614,7 +616,7 @@ body {
 
 /* Date cell */
 .td-date {
-  color: var(--text) !important;
+  color: var(--text-primary) !important;
   font-size: 12px !important;
 }
 
@@ -623,7 +625,7 @@ body {
   display: inline-flex;
   align-items: center;
   padding: 3px 9px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 11px;
   font-weight: 500;
   font-family: var(--font-sans);
@@ -632,27 +634,27 @@ body {
 }
 
 .mode-badge--practice {
-  background: rgba(99,102,241,.08);
-  border-color: rgba(99,102,241,.18);
-  color: var(--accent3);
+  background: var(--accent-olive-tint);
+  border-color: rgba(74, 90, 70, 0.2);
+  color: var(--accent-olive);
 }
 
 .mode-badge--viva {
-  background: rgba(251,191,36,.07);
-  border-color: rgba(251,191,36,.18);
-  color: var(--amber);
+  background: var(--status-warning-tint);
+  border-color: rgba(176, 119, 42, 0.2);
+  color: var(--status-warning);
 }
 
 .mode-badge--pitch {
-  background: rgba(34,197,94,.07);
-  border-color: rgba(34,197,94,.18);
-  color: #4ade80;
+  background: var(--status-success-tint);
+  border-color: rgba(59, 110, 71, 0.2);
+  color: var(--status-success);
 }
 
 .mode-badge--interview {
-  background: rgba(96,165,250,.07);
-  border-color: rgba(96,165,250,.18);
-  color: var(--blue);
+  background: var(--bg-surface-muted);
+  border-color: var(--border-default);
+  color: var(--text-primary);
 }
 
 /* Confidence score cell */
@@ -662,15 +664,15 @@ body {
   font-weight: 600 !important;
 }
 
-.score-high  { color: #4ade80 !important; }
-.score-mid   { color: var(--amber) !important; }
-.score-low   { color: var(--red) !important; }
+.score-high  { color: var(--status-success) !important; }
+.score-mid   { color: var(--status-warning) !important; }
+.score-low   { color: var(--status-danger) !important; }
 
 /* WPM / pauses / duration cells */
 .td-mono {
   font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--text) !important;
+  color: var(--text-primary) !important;
 }
 
 /* View Details button */
@@ -680,7 +682,7 @@ body {
   gap: 5px;
   padding: 6px 12px;
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   color: var(--text-secondary);
   font-size: 11px;
@@ -696,8 +698,9 @@ body {
 }
 
 .view-btn:hover {
-  border-color: rgba(99,102,241,.4);
-  color: var(--accent3);
+  border-color: var(--border-focus);
+  color: var(--text-primary);
+  background: var(--bg-surface-hover);
   background: var(--accent-dim);
   box-shadow: 0 0 8px rgba(99,102,241,.12);
 }

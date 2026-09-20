@@ -1,33 +1,26 @@
 /* ===================================================================
    BOL — auth-modal.css
-   Login / signup modal for BOL.html (built and driven by BOLauth.js)
-
-   WHY THIS FILE EXISTS
-   login.css can't be loaded on BOL.html as-is: it contains global
-   html / body / * / a / button / input rules and index-page classes
-   (.hero, .nav__*, ...) that would restyle the whole app.
-   So this file re-uses the SAME visual rules (values copied from
-   login.css: .login-card, .form-field*, .login-btn, .signup-*), but
-   every selector is scoped under .bol-auth-overlay.
-
-   Nothing here targets anything outside .bol-auth-overlay.
+   Login / signup modal driven by BOLauth.js
+   Scoped entirely under .bol-auth-overlay
 =================================================================== */
 
-/* ─── Tokens (local to the modal — BOL.html's own :root is untouched) ─── */
 .bol-auth-overlay {
-  --bg:       #020617;
-  --muted:    #9ca3af;
-  --text:     #e5e7eb;
-  --accent1:  #60a5fa;
-  --accent2:  #22c55e;
-  --card:     #081226;
-  --font-display: 'Sora', system-ui, sans-serif;
+  --modal-bg:      #FFFDF8;
+  --modal-border:  #E2DCCE;
+  --modal-text:    #242321;
+  --modal-muted:   #8C9088;
+  --modal-second:  #5F635D;
+  --modal-accent:  #5A1F2B;
+  --modal-hover-bg:#F4F0E6;
+  --modal-input-bg:#F8F4EC;
+  --modal-err:     #B54838;
+  --modal-success: #3B6E47;
+  --font-display: 'DM Sans', system-ui, sans-serif;
   --ease-reveal: cubic-bezier(0.22, 0.9, 0.3, 1);
   --ease-lift:   cubic-bezier(0.34, 1.2, 0.64, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ─── Scoped reset (login.css did this globally) ─── */
 .bol-auth-overlay,
 .bol-auth-overlay *,
 .bol-auth-overlay *::before,
@@ -39,11 +32,6 @@
 .bol-auth-overlay input  { font-family: var(--font-display); outline: none; }
 .bol-auth-overlay svg    { display: block; flex-shrink: 0; }
 
-/* ─── Overlay (from .signup-overlay) ───
-   z-index 10000: above BOL.html's record modal (9000/9999) and result
-   screen (1000-1400) and sticky nav (200).
-   visibility:hidden while closed so the invisible inputs are not
-   reachable with Tab. */
 .bol-auth-overlay {
   position: fixed;
   inset: 0;
@@ -53,11 +41,11 @@
   justify-content: center;
   padding: 24px;
   font-family: var(--font-display);
-  color: var(--text);
+  color: var(--modal-text);
   -webkit-font-smoothing: antialiased;
-  background: rgba(2, 6, 23, 0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(36, 35, 33, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -70,11 +58,9 @@
   transition: opacity 0.3s var(--ease-reveal), visibility 0s;
 }
 
-/* Only one card visible at a time */
 .bol-auth-overlay[data-view="login"]  .signup-card { display: none; }
 .bol-auth-overlay[data-view="signup"] .login-card  { display: none; }
 
-/* ─── Cards (shared shell = .signup-card values) ─── */
 .bol-auth-overlay .login-card,
 .bol-auth-overlay .signup-card {
   position: relative;
@@ -83,62 +69,39 @@
   max-height: 92vh;
   overflow-x: hidden;
   overflow-y: auto;
-  background: rgba(8, 18, 38, 0.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 22px;
+  background: var(--modal-bg);
+  border: 1px solid var(--modal-border);
+  border-radius: 14px;
   padding: 40px 36px 36px;
-  box-shadow: 0 24px 60px rgba(2, 6, 23, 0.75), 0 0 0 1px rgba(99,102,241,0.12) inset;
+  box-shadow: 0 16px 48px rgba(36,35,33,0.12);
   transform: scale(0.92) translateY(24px);
   transition: transform 0.4s var(--ease-lift);
 }
 .bol-auth-overlay.open .login-card,
 .bol-auth-overlay.open .signup-card { transform: scale(1) translateY(0); }
 
-.bol-auth-overlay .login-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 8%; right: 8%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(99,102,241,0.55), rgba(96,165,250,0.35), transparent);
-}
+.bol-auth-overlay .login-card::before,
 .bol-auth-overlay .signup-card::before {
   content: '';
   position: absolute;
   top: 0; left: 8%; right: 8%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(129,140,248,0.55), rgba(96,165,250,0.35), transparent);
+  height: 2px;
+  background: var(--modal-accent);
+  border-radius: 0 0 4px 4px;
+  opacity: 0.7;
 }
 
-.bol-auth-overlay .login-card__aurora {
-  position: absolute;
-  top: -60px; left: 50%;
-  transform: translateX(-50%);
-  width: 320px; height: 200px;
-  background: radial-gradient(ellipse, rgba(99,102,241,0.12), transparent 70%);
-  filter: blur(30px);
-  pointer-events: none;
-}
-.bol-auth-overlay .signup-card__aurora {
-  position: absolute;
-  top: -60px; left: 50%;
-  transform: translateX(-50%);
-  width: 320px; height: 180px;
-  background: radial-gradient(ellipse, rgba(129,140,248,0.10), transparent 70%);
-  filter: blur(30px);
-  pointer-events: none;
-}
+.bol-auth-overlay .login-card__aurora,
+.bol-auth-overlay .signup-card__aurora { display: none; }
 
-/* Close button (used on both cards) */
 .bol-auth-overlay .signup-close {
   position: absolute;
   top: 16px; right: 16px;
   width: 30px; height: 30px;
   border-radius: 8px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
-  color: rgba(156,163,175,0.7);
+  background: var(--modal-hover-bg);
+  border: 1px solid var(--modal-border);
+  color: var(--modal-second);
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -146,83 +109,83 @@
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
   z-index: 2;
-  font-family: 'Sora', system-ui, sans-serif;
 }
 .bol-auth-overlay .signup-close:hover {
-  background: rgba(255,255,255,0.08);
-  color: #e5e7eb;
+  background: #EDE7DA;
+  color: var(--modal-text);
 }
 
-/* ─── Headers ─── */
 .bol-auth-overlay .login-card__header,
 .bol-auth-overlay .signup-card__header {
   position: relative;
   display: flex;
   align-items: center;
   gap: 16px;
-  padding-right: 34px; /* keep clear of the close button */
+  padding-right: 34px;
 }
 .bol-auth-overlay .login-card__header  { margin-bottom: 32px; }
 .bol-auth-overlay .signup-card__header { margin-bottom: 28px; }
 
-.bol-auth-overlay .login-card__logo-ring {
-  width: 44px; height: 44px;
-  border-radius: 12px;
-  background: radial-gradient(circle at 30% 25%, #93c5fd, #1d4ed8);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; font-weight: 800; color: #06122a;
-  box-shadow: 0 8px 28px rgba(29,78,216,0.4);
-  flex-shrink: 0;
-}
+.bol-auth-overlay .login-card__logo-ring,
 .bol-auth-overlay .signup-card__logo-ring {
   width: 44px; height: 44px;
   border-radius: 12px;
-  background: radial-gradient(circle at 30% 25%, #a5b4fc, #4f46e5);
+  background: var(--modal-accent);
   display: flex; align-items: center; justify-content: center;
-  font-size: 20px; font-weight: 800; color: #06122a;
-  box-shadow: 0 8px 28px rgba(79,70,229,0.4);
+  font-size: 20px; font-weight: 800; color: #FFFDF8;
+  box-shadow: 0 4px 16px rgba(90,31,43,0.25);
   flex-shrink: 0;
 }
+
 .bol-auth-overlay .login-card__title,
 .bol-auth-overlay .signup-card__title {
   font-size: 21px;
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: var(--text);
+  color: var(--modal-text);
 }
 .bol-auth-overlay .login-card__subtitle,
 .bol-auth-overlay .signup-card__subtitle {
   font-size: 13px;
-  color: var(--muted);
-  margin-top: 3px;
+  color: var(--modal-second);
+  margin-top: 4px;
+  line-height: 1.5;
 }
 
-/* ─── Forms ─── */
-.bol-auth-overlay .login-form  { display: flex; flex-direction: column; gap: 18px; }
-.bol-auth-overlay .signup-form { display: flex; flex-direction: column; gap: 16px; }
+.bol-auth-overlay .login-form,
+.bol-auth-overlay .signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
 .bol-auth-overlay .form-field {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 6px;
 }
-.bol-auth-overlay .form-field__label {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text);
-  letter-spacing: 0.01em;
+.bol-auth-overlay .form-field.has-error .form-field__input {
+  border-color: var(--modal-err);
 }
+
 .bol-auth-overlay .form-field__label-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.bol-auth-overlay .form-field__forgot {
+.bol-auth-overlay .form-field__label {
   font-size: 12px;
-  color: var(--muted);
+  font-weight: 600;
+  color: var(--modal-text);
+  letter-spacing: 0.01em;
+}
+.bol-auth-overlay .form-field__forgot {
+  font-size: 11px;
+  color: var(--modal-second);
+  text-decoration: none;
   transition: color 0.15s;
 }
-.bol-auth-overlay .form-field__forgot:hover { color: var(--accent1); }
+.bol-auth-overlay .form-field__forgot:hover { color: var(--modal-text); }
 
 .bol-auth-overlay .form-field__wrap {
   position: relative;
@@ -231,264 +194,141 @@
 }
 .bol-auth-overlay .form-field__icon {
   position: absolute;
-  left: 14px;
-  color: rgba(156,163,175,0.5);
+  left: 12px;
+  color: var(--modal-muted);
   pointer-events: none;
-  transition: color 0.2s;
+  flex-shrink: 0;
 }
 .bol-auth-overlay .form-field__input {
   width: 100%;
-  padding: 13px 14px 13px 42px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-  color: var(--text);
+  height: 42px;
+  background: var(--modal-input-bg);
+  border: 1px solid var(--modal-border);
+  border-radius: 8px;
+  padding: 0 12px 0 38px;
   font-size: 14px;
-  transition:
-    border-color 0.2s var(--ease-smooth),
-    box-shadow   0.2s var(--ease-smooth),
-    background   0.2s;
+  color: var(--modal-text);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-.bol-auth-overlay .form-field__input::placeholder { color: rgba(156,163,175,0.35); }
-.bol-auth-overlay .form-field__input:hover {
-  border-color: rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.04);
+.bol-auth-overlay .form-field__input::placeholder { color: var(--modal-muted); }
+.bol-auth-overlay .form-field__input:focus {
+  border-color: var(--modal-accent);
+  box-shadow: 0 0 0 3px rgba(90,31,43,0.08);
 }
-/* login = blue focus ring, signup = indigo focus ring (as in login.css) */
-.bol-auth-overlay .login-form .form-field__input:focus {
-  border-color: rgba(96,165,250,0.5);
-  background: rgba(96,165,250,0.04);
-  box-shadow: 0 0 0 3px rgba(96,165,250,0.12), 0 0 20px rgba(96,165,250,0.07);
-}
-.bol-auth-overlay .signup-form .form-field__input:focus {
-  border-color: rgba(129,140,248,0.5);
-  background: rgba(129,140,248,0.04);
-  box-shadow: 0 0 0 3px rgba(129,140,248,0.12), 0 0 20px rgba(129,140,248,0.07);
-}
-.bol-auth-overlay .login-form  .form-field__wrap:focus-within .form-field__icon { color: var(--accent1); }
-.bol-auth-overlay .signup-form .form-field__wrap:focus-within .form-field__icon { color: #818cf8; }
-
-.bol-auth-overlay .form-field.has-error .form-field__input {
-  border-color: rgba(248,113,113,0.5);
-  box-shadow: 0 0 0 3px rgba(248,113,113,0.1);
-}
-
-/* room for the show/hide password button (login.css used #passwordInput) */
-.bol-auth-overlay .form-field__input--has-toggle { padding-right: 44px; }
+.bol-auth-overlay .form-field__input--has-toggle { padding-right: 40px; }
 
 .bol-auth-overlay .form-field__toggle-pw {
   position: absolute;
-  right: 13px;
-  color: var(--muted);
+  right: 10px;
+  color: var(--modal-muted);
+  padding: 4px;
   display: flex;
   align-items: center;
-  padding: 4px;
-  border-radius: 4px;
+  justify-content: center;
   transition: color 0.15s;
 }
-.bol-auth-overlay .form-field__toggle-pw:hover { color: var(--text); }
+.bol-auth-overlay .form-field__toggle-pw:hover { color: var(--modal-text); }
 
 .bol-auth-overlay .form-field__error {
-  font-size: 12px;
-  color: #f87171;
-  display: block;
+  font-size: 11px;
+  color: var(--modal-err);
   min-height: 16px;
   opacity: 0;
-  transform: translateY(-3px);
-  transition: opacity 0.2s, transform 0.2s;
+  transition: opacity 0.2s;
 }
-.bol-auth-overlay .form-field__error.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.bol-auth-overlay .form-field__error.visible { opacity: 1; }
 
 .bol-auth-overlay .form-alert {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
-  padding: 11px 14px;
-  background: rgba(248,113,113,0.07);
-  border: 1px solid rgba(248,113,113,0.22);
-  border-radius: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(181,72,56,0.08);
+  border: 1px solid rgba(181,72,56,0.2);
   font-size: 13px;
-  color: #fca5a5;
-  animation: bolAuthAlertSlide 0.25s var(--ease-reveal) forwards;
-}
-@keyframes bolAuthAlertSlide {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
+  color: var(--modal-err);
 }
 
-/* ─── Buttons ─── */
 .bol-auth-overlay .login-btn,
 .bol-auth-overlay .signup-btn {
   position: relative;
   width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  font-size: 15px;
+  height: 44px;
+  border-radius: 8px;
+  background: var(--modal-accent);
+  border: 1px solid var(--modal-accent);
+  color: #FFFDF8;
+  font-size: 14px;
   font-weight: 600;
-  font-family: 'Sora', system-ui, sans-serif;
-  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(90,31,43,0.2);
   letter-spacing: 0.01em;
-  border: none;
-  overflow: hidden;
-  isolation: isolate;
-  transition: transform 0.2s var(--ease-lift), box-shadow 0.2s var(--ease-smooth), filter 0.2s;
-}
-.bol-auth-overlay .login-btn {
-  background: linear-gradient(90deg, var(--accent1), #2563eb);
-  box-shadow: 0 10px 28px rgba(37,99,235,0.3), 0 0 0 1px rgba(255,255,255,0.08) inset;
-}
-.bol-auth-overlay .signup-btn {
   margin-top: 4px;
-  background: linear-gradient(90deg, #818cf8, #4f46e5);
-  box-shadow: 0 10px 28px rgba(79,70,229,0.3), 0 0 0 1px rgba(255,255,255,0.08) inset;
 }
-.bol-auth-overlay .login-btn::before,
-.bol-auth-overlay .signup-btn::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 55%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-  transform: skewX(-18deg);
-  transition: left 0.55s var(--ease-smooth);
+.bol-auth-overlay .login-btn:hover:not(:disabled),
+.bol-auth-overlay .signup-btn:hover:not(:disabled) {
+  background: #4A1823;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(90,31,43,0.25);
 }
-.bol-auth-overlay .login-btn:hover  { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(37, 99, 235, 0.38); filter: brightness(1.07); }
-.bol-auth-overlay .signup-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(79, 70, 229, 0.38); filter: brightness(1.07); }
-.bol-auth-overlay .login-btn:hover::before,
-.bol-auth-overlay .signup-btn:hover::before { left: 150%; }
-.bol-auth-overlay .login-btn:active  { transform: translateY(0) scale(0.98); box-shadow: 0 6px 18px rgba(37,99,235,0.22); }
-.bol-auth-overlay .signup-btn:active { transform: translateY(0) scale(0.98); }
 .bol-auth-overlay .login-btn:disabled,
-.bol-auth-overlay .signup-btn:disabled { cursor: default; }
+.bol-auth-overlay .signup-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-.bol-auth-overlay .login-btn.loading  .login-btn__label,
-.bol-auth-overlay .signup-btn.loading .signup-btn__label { opacity: 0; }
-.bol-auth-overlay .login-btn.loading  .login-btn__spinner,
-.bol-auth-overlay .signup-btn.loading .signup-btn__spinner { display: block; }
 .bol-auth-overlay .login-btn__label,
 .bol-auth-overlay .signup-btn__label { transition: opacity 0.15s; }
+
 .bol-auth-overlay .login-btn__spinner,
 .bol-auth-overlay .signup-btn__spinner {
   display: none;
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 18px; height: 18px;
-  border: 2px solid rgba(255,255,255,0.28);
-  border-top-color: #fff;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,253,248,0.3);
+  border-top-color: #FFFDF8;
   border-radius: 50%;
-  animation: bolAuthSpin 0.65s linear infinite;
+  animation: bolAuthSpin 0.7s linear infinite;
 }
-@keyframes bolAuthSpin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.bol-auth-overlay .login-btn.loading .login-btn__label,
+.bol-auth-overlay .signup-btn.loading .signup-btn__label { opacity: 0; }
+.bol-auth-overlay .login-btn.loading .login-btn__spinner,
+.bol-auth-overlay .signup-btn.loading .signup-btn__spinner { display: block; position: absolute; }
+@keyframes bolAuthSpin { to { transform: rotate(360deg); } }
 
 .bol-auth-overlay .bol-auth-maybe-later {
-  display: block;
   width: 100%;
-  margin-top: 12px;
-  padding: 10px 14px;
+  padding: 9px;
+  font-size: 12px;
+  color: var(--modal-second);
   text-align: center;
-  font-size: 13px;
-  font-weight: 500;
-  font-family: 'Sora', system-ui, sans-serif;
-  color: var(--muted);
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
+  border: none;
   cursor: pointer;
-  transition: all 0.15s;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
 }
 .bol-auth-overlay .bol-auth-maybe-later:hover {
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--modal-text);
+  background: var(--modal-hover-bg);
 }
 
-/* ─── Footer rows / view-switch links ─── */
 .bol-auth-overlay .login-card__footer-note,
 .bol-auth-overlay .signup-card__footer-note {
   text-align: center;
-  font-size: 13px;
-  color: var(--muted);
+  font-size: 12px;
+  color: var(--modal-second);
+  margin-top: 16px;
 }
-.bol-auth-overlay .login-card__footer-note  { margin-top: 24px; }
-.bol-auth-overlay .signup-card__footer-note { margin-top: 22px; }
-
-.bol-auth-overlay .login-card__create-link {
-  color: var(--accent1);
-  font-weight: 500;
-  transition: color 0.15s;
-}
-.bol-auth-overlay .login-card__create-link:hover { color: #93c5fd; text-decoration: underline; }
+.bol-auth-overlay .login-card__create-link,
 .bol-auth-overlay .signup-card__signin-link {
-  color: #818cf8;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.15s;
+  color: var(--modal-accent);
+  font-weight: 600;
+  text-decoration: none;
 }
-.bol-auth-overlay .signup-card__signin-link:hover { color: #a5b4fc; text-decoration: underline; }
+.bol-auth-overlay .login-card__create-link:hover,
+.bol-auth-overlay .signup-card__signin-link:hover { text-decoration: underline; }
 
-/* ─── Scrollbar (signup card) ─── */
-.bol-auth-overlay .login-card::-webkit-scrollbar,
-.bol-auth-overlay .signup-card::-webkit-scrollbar { width: 4px; }
-.bol-auth-overlay .login-card::-webkit-scrollbar-track,
-.bol-auth-overlay .signup-card::-webkit-scrollbar-track { background: transparent; }
-.bol-auth-overlay .login-card::-webkit-scrollbar-thumb,
-.bol-auth-overlay .signup-card::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
-
-/* ─── Autofill ─── */
-.bol-auth-overlay input:-webkit-autofill,
-.bol-auth-overlay input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px rgba(8,18,38,0.95) inset !important;
-  -webkit-text-fill-color: var(--text) !important;
-  caret-color: var(--text);
-  transition: background-color 9999s;
-}
-
-/* ─── Responsive (same breakpoints as login.css) ─── */
-@media (max-width: 768px) {
-  .bol-auth-overlay { padding: 16px; align-items: flex-end; }
-
-  .bol-auth-overlay .login-card,
-  .bol-auth-overlay .signup-card {
-    max-width: 100%;
-    max-height: 88vh;
-    padding: 28px 18px 24px;
-    border-radius: 20px 20px 14px 14px;
-  }
-  .bol-auth-overlay .login-card__header,
-  .bol-auth-overlay .signup-card__header { gap: 12px; margin-bottom: 20px; padding-right: 34px; }
-  .bol-auth-overlay .login-card__logo-ring,
-  .bol-auth-overlay .signup-card__logo-ring { width: 38px; height: 38px; font-size: 17px; border-radius: 10px; }
-  .bol-auth-overlay .login-card__title,
-  .bol-auth-overlay .signup-card__title { font-size: 18px; }
-  .bol-auth-overlay .login-card__subtitle,
-  .bol-auth-overlay .signup-card__subtitle { font-size: 12px; }
-  .bol-auth-overlay .form-field__input { font-size: 16px; /* prevents iOS zoom on focus */ }
-  .bol-auth-overlay .login-form,
-  .bol-auth-overlay .signup-form { gap: 14px; }
-  .bol-auth-overlay .login-btn,
-  .bol-auth-overlay .signup-btn { padding: 13px; }
-  .bol-auth-overlay .login-card__footer-note,
-  .bol-auth-overlay .signup-card__footer-note { font-size: 12px; margin-top: 16px; }
-}
-@media (max-width: 480px) {
-  .bol-auth-overlay .login-card  { padding: 24px 16px 24px; }
-  .bol-auth-overlay .signup-card { padding: 24px 16px 22px; }
-}
-@media (max-width: 380px) {
-  .bol-auth-overlay { padding: 10px; }
-  .bol-auth-overlay .login-card  { padding: 22px 14px 20px; border-radius: 16px 16px 10px 10px; }
-  .bol-auth-overlay .signup-card { padding: 22px 14px 20px; border-radius: 16px 16px 10px 10px; }
-  .bol-auth-overlay .login-card__title { font-size: 16px; }
-  .bol-auth-overlay .login-card__subtitle { font-size: 11px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bol-auth-overlay,
-  .bol-auth-overlay .login-card,
-  .bol-auth-overlay .signup-card { transition: none; }
-}
+.bol-auth-overlay .login-card__header-text { flex: 1; }

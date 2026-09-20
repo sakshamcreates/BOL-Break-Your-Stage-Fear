@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>BOL — Break Your Stage Fear</title>
-<link rel="stylesheet" href="backup5.css">
+<link rel="stylesheet" href="assets/css/theme.css">
 <link rel="stylesheet" href="result-screen-1.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,27 +13,27 @@
 <style>
 /* ─── VARIABLES ─── */
 :root{
-  --bg:#050C18;--s1:#0B1526;--s2:#101D30;--s3:#162038;
-  --b1:rgba(255,255,255,0.07);--b2:rgba(255,255,255,0.12);--b3:rgba(255,255,255,0.18);
-  --t1:#E8EDF8;--t2:#8A97B5;--t3:#4A5672;
-  --blue:#3B82F6;--blue-l:#60A5FA;--blue-d:#1D4ED8;
-  --purple:#7C3AED;--purple-l:#A78BFA;
-  --green:#10B981;--green-l:#34D399;--red:#EF4444;
-  --r:14px;--r-lg:20px;--r-xl:24px;
-  --fh:'Bricolage Grotesque',sans-serif;
+  --bg:var(--bg-primary);--s1:var(--bg-surface);--s2:var(--bg-surface-muted);--s3:var(--bg-surface-hover);
+  --b1:var(--border-default);--b2:var(--border-subtle);--b3:var(--border-focus);
+  --t1:#242321;--t2:#5F635D;--t3:#8C9088;
+  --blue:var(--accent-burgundy);--blue-l:var(--accent-rose);--blue-d:#4A1823;
+  --purple:var(--accent-burgundy);--purple-l:var(--accent-rose);
+  --green:var(--status-success);--green-l:#3B6E47;--red:var(--status-danger);
+  --r:6px;--r-lg:10px;--r-xl:14px;
+  --fh:'DM Sans',sans-serif;
   --fb:'DM Sans',sans-serif;
-  --fm:'JetBrains Mono',monospace;
-  --sh:0 32px 80px rgba(0,0,0,0.55);
-  --sh-sm:0 8px 24px rgba(0,0,0,0.35);
+  --fm:'IBM Plex Mono',monospace;
+  --sh:var(--shadow-lg);
+  --sh-sm:var(--shadow-sm);
 }
 .btn-secondary{
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: #E8EDF8;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
 }
 .btn-secondary:hover{
-  border-color: rgba(24, 102, 228, 0.35);
-  background: rgba(59,130,246,.08);
+  border-color: var(--border-focus);
+  background: var(--bg-surface-hover);
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}

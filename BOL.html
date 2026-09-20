@@ -10,55 +10,54 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/theme.css">
 <link rel="stylesheet" href="result-screen-1.css">
 <style>
 /* ─── UNIFIED BOL DESIGN TOKEN FOUNDATION ─── */
+/* ─── UNIFIED BOL DESIGN TOKEN FOUNDATION (BURGUNDY) ─── */
 :root {
-  --bg-primary:         #F5F1E8;
-  --bg-surface:         #FFFDF8;
-  --bg-surface-muted:   #EDE7DA;
-  --bg-surface-hover:   #F8F4EC;
+  /* Core palette */
+  --bg-primary:        #F4F0E6;   /* warm beige */
+  --bg-surface:        #FFFDF8;   /* surface */
+  --bg-surface-muted:  #EDE7DA;
+  --bg-surface-hover:  #F8F4EC;
 
-  --text-primary:       #1F211E;
-  --text-secondary:     #5F635D;
-  --text-muted:         #8C9088;
+  --text-primary:      #242321;   /* dark text */
+  --text-secondary:    #5F635D;
+  --text-muted:        #8C9088;
 
-  --border-default:     #E2DCCE;
-  --border-subtle:      #EDE7DA;
-  --border-focus:       #1F211E;
+  --border-default:    #E2DCCE;
+  --border-subtle:     #EDE7DA;
+  --border-focus:      #242321;
 
-  --button-primary-bg:    #1F211E;
-  --button-primary-text:  #FFFDF8;
-  --button-primary-hover: #111310;
+  /* Buttons */
+  --button-primary-bg:   #5A1F2B;  /* burgundy */
+  --button-primary-text: #FFFDF8;
+  --button-primary-hover:#4A1823;
 
-  --button-secondary-bg:    #EDE7DA;
-  --button-secondary-text:  #1F211E;
+  --button-secondary-bg:   #EDE7DA;
+  --button-secondary-text: #242321;
   --button-secondary-border:#D8D1C1;
 
-  --accent-olive:       #4A5A46;
-  --accent-olive-tint:  #EDF2EB;
+  /* Accents */
+  --accent-burgundy:   #5A1F2B;
+  --accent-rose:       #9B6670;
 
-  --accent-terracotta:  #B8583D;
-  --accent-terracotta-tint: #FBEFEA;
+  --status-success:    #3B6E47;   /* keep success green */
+  --status-warning:    #B0772A;
+  --status-danger:     #B54838;
 
-  --status-success:       #3B6E47;
-  --status-success-tint:  #EDF5EF;
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(31,33,30,0.04);
+  --shadow-md: 0 4px 16px rgba(31,33,30,0.06);
+  --shadow-lg: 0 16px 40px rgba(31,33,30,0.08);
 
-  --status-warning:       #B0772A;
-  --status-warning-tint:  #FDF7ED;
-
-  --status-danger:        #B54838;
-  --status-danger-tint:   #FDF1EF;
-
-  --shadow-sm: 0 1px 3px rgba(31, 33, 30, 0.04);
-  --shadow-md: 0 4px 16px rgba(31, 33, 30, 0.06);
-  --shadow-lg: 0 16px 40px rgba(31, 33, 30, 0.08);
-
+  /* Radii */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
 
-  /* ── Legacy Aliases mapped to warm foundation ── */
+  /* Legacy alias mappings (preserve existing selectors) */
   --bg:    var(--bg-primary);
   --s1:    var(--bg-surface);
   --s2:    var(--bg-surface-muted);
@@ -69,9 +68,9 @@
   --t1:    var(--text-primary);
   --t2:    var(--text-secondary);
   --t3:    var(--text-muted);
-  --blue:  var(--accent-olive);
-  --blue-l:var(--accent-olive);
-  --blue-d:var(--accent-olive);
+  --blue:  var(--accent-burgundy);
+  --blue-l:var(--accent-burgundy);
+  --blue-d:var(--accent-burgundy);
   --purple:var(--text-primary);
   --purple-l:var(--text-secondary);
   --green: var(--status-success);
@@ -86,6 +85,7 @@
   --sh:    var(--shadow-md);
   --sh-sm: var(--shadow-sm);
 }
+
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -712,7 +712,7 @@ footer{border-top:1px solid var(--border-default);padding:48px 0 32px;background
         </div>
       </div>
      
-      <a class="btn-cta" href="dashboard.html">track your improvement
+      <a class="btn-cta" href="dashboard.html" id="trackImprovementLink">track your improvement
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
       </a>
     </div>
